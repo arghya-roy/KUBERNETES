@@ -238,7 +238,7 @@ in output it shows testpod5 has 1/1 that means we have only one container in pod
 
 **LABELS** - used to identify pod
              ######    supposed a application named arghya is running in 3 pod. just to identify that 3 pod we can use labels.
-		###### we can search them by label.
+		# we can search them by label.
 		###### a label is a key value pair without any predefined meaning that can be attached to object.
 		###### Name(key): arghya(value)
 		###### we can give any text as key and value

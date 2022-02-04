@@ -237,27 +237,33 @@ in output it shows testpod5 has 1/1 that means we have only one container in pod
 ---	
 
 **LABELS** - 
-           - used to identify pod
-            - supposed a application named arghya is running in 3 pod. just to identify that 3 pod we can use labels.
-		# we can search them by label.
-		###### a label is a key value pair without any predefined meaning that can be attached to object.
-		###### Name(key): arghya(value)
-		###### we can give any text as key and value
-		###### label is same as tag in aws.
-		###### multiple label can be added to a single object.
-		###### label should be written under metadata.
-		###### many object can carry same label.
+```
+              used to identify pod
+         supposed a application named arghya is running in 3 pod. just to identify that 3 pod we can use labels.
+		 we can search them by label.
+		 a label is a key value pair without any predefined meaning that can be attached to object.
+		 Name(key): arghya(value)
+		 we can give any text as key and value
+		 label is same as tag in aws.
+		 multiple label can be added to a single object.
+		 label should be written under metadata.
+		 many object can carry same label.
+```
 		 
-**labels selector** - it is a process by using it we can select/get/delete pods based on its label.
+**labels selector** - 
+```
+it is a process by using it we can select/get/delete pods based on its label.
 once label are attached to object(pod), we need to filters them based on label. yhis is called label selector.
 The api currently supports two types of selector -
-             ######   1) equity based  key=value or key!=value ( it gives all pods which have this label)
-		######			  2) set based     
-			######		       a) key in(value1,value2)
-				######		      it gives those pods contains key=any of these values
-					######	   b) key notin(value1,value2)
-				######                it gives those pods which do not contains key=any of these values
-				######		   c) exist
+                      1) equity based  
+		              key=value or key!=value ( it gives all pods which have this label)
+		      2) set based     
+			     a) key in(value1,value2)
+				    it gives those pods contains key=any of these values
+			     b) key notin(value1,value2)
+				    it gives those pods which do not contains key=any of these values
+			     c) exist
+```
 							  
 		 
 ```

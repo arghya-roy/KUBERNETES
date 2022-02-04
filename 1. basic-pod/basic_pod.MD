@@ -7,7 +7,7 @@
 
 ##### when we use kind: pod then if this pod is deleted then it can never by created automatically. to create it automatically we will leran it later.
 
-to apply pod
+**to apply pod
 ```
 # kubectl apply f pod_name.yml
 ```

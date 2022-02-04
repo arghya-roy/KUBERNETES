@@ -7,34 +7,34 @@
 
 ##### when we use kind: pod then if this pod is deleted then it can never by created automatically. to create it automatically we will leran it later.
 
-**to apply pod
+**to apply pod**
 ```
 # kubectl apply f pod_name.yml
 ```
-to see all pods
+**to see all pods**
 ```
 # kubectl get pods
 ```
-to see that which pod is running on which nodes. it also shows pvt ip of pods.
+**to see that which pod is running on which nodes. it also shows pvt ip of pods.**
 ```
 # kubectl get pods -0 wide
 ```
-to see details of a single pod
+**to see details of a single pod**
 ```
 # kubectl describe pod pod_name
        or
 # kubectl describe pod/pod_name
 ```
-to see that what is happening in container. if pod has multiple container then we have to specify container name.
+**to see that what is happening in container. if pod has multiple container then we have to specify container name.**
 ```
 # kubectl logs -f pod_name
 ```
-if have multiple container
+**if have multiple container**
 ```
 # kubectl logs -f pod_name -c container_name
 ```
 
-to delete pod
+**to delete pod**
 ```
 # kubectl delete pod pod_name
 # kubectl delete -f name.yml	   
@@ -42,10 +42,10 @@ to delete pod
 ---
                                                                                 pod
 ---
-{ kind of a pod is always "pod". apiVersion of a pod is always v1. under metadata the name is name of the pod.
+**kind of a pod is always "pod". apiVersion of a pod is always v1. under metadata the name is name of the pod.
 incase of pod1 we create one container. name of that container is c00 and image is ubuntu. after creation of that container
 it will run /bin/bash command in container. -C means container. while true; do echo hello-bhupinder means if container creation succesfull
-the run hello-bhupinder for infinite time }
+the run hello-bhupinder for infinite time**
 
 ---
 
@@ -136,7 +136,7 @@ to go inside container
 ```
 
 ---
-annotation - under it we write that why we create this pod. when we use kubectl describe pod pod_name then we can see annotation.
+**annotation** - under it we write that why we create this pod. when we use kubectl describe pod pod_name then we can see annotation.
 we write annotation in metadata section.
 ```
 #vi pod3.yml
@@ -166,7 +166,7 @@ in output it shows testpod3 has 1/1 that means we have only one container in pod
 # kubectl delete -f pod3.yml
 ```
 ---
-Enviroment variable - it is a key value pair. we need to define this in manifest file. after applying this file if we go inside the pod and run echo $key then it
+**Enviroment variable** - it is a key value pair. we need to define this in manifest file. after applying this file if we go inside the pod and run echo $key then it
 returns value.
 ```
 # vi pod4.yml
@@ -208,7 +208,7 @@ in output it shows testpod4 has 1/1 that means we have only one container in pod
 
 ---
 
-POD WITH PORTS- to expose port in pod
+**POD WITH PORTS- to expose port in pod**
 ```
 #vi pod5
 ```
@@ -236,8 +236,8 @@ in output it shows testpod5 has 1/1 that means we have only one container in pod
 ```
 ---	
 
-LABELS - used to identify pod
-         supposed a application named arghya is running in 3 pod. just to identify that 3 pod we can use labels.
+**LABELS** - used to identify pod
+             supposed a application named arghya is running in 3 pod. just to identify that 3 pod we can use labels.
 		 we can search them by label.
 		 a label is a key value pair without any predefined meaning that can be attached to object.
 		 Name(key): arghya(value)
@@ -247,7 +247,7 @@ LABELS - used to identify pod
 		 label should be written under metadata.
 		 many object can carry same label.
 		 
-labels selector - it is a process by using it we can select/get/delete pods based on its label.
+**labels selector** - it is a process by using it we can select/get/delete pods based on its label.
 once label are attached to object(pod), we need to filters them based on label. yhis is called label selector.
 The api currently supports two types of selector -
                       1) equity based  key=value or key!=value ( it gives all pods which have this label)
@@ -284,57 +284,61 @@ in output it shows delhipod has 1/1 that means we have only one container in pod
 # kubectl get pods -o wide (it also shows pvt ip of pods)
 # kubectl describe pod delhipod
 # kubectl logs -f delhipod   ( it shows hello-bhupinder )
+```
 
-to check labels on all pod
+**to check labels on all pod**
+```
 # kubectl get pods --show-labels
-
+```
+```
 # kubectl delete pod delhipodpod
 # kubectl delete -f pod6.yml
-
-if you want to add label on existing pod
+```
+**if you want to add label on existing pod**
+```
 # kubectl label pods pod_name myname=arghya	
 # kubectl get pods --show-labels
 ```
 
-selector-
+### selector-
 
-equity based- 
+#### equity based- 
 
-we can get list of pods which match a label-
+**we can get list of pods which match a label-**
 ```
 # kubectl get pods -l env=development
 ```
-we can get list of pods which does not match a label-
+**we can get list of pods which does not match a label-**
 ```
 # kubectl get pods -l myname!=arghya
 ```
-it gives those pods which contains all of these label -
+**it gives those pods which contains all of these label -**
 ```
 # kubectl get pods -l env=development,myname=arghya
 ```
-we can delete list of pods which match a label-
+**we can delete list of pods which match a label-**
 ```
 # kubectl delete pods -l env=development
 ```
-we can delete list of pods which does not match a label-
+**we can delete list of pods which does not match a label-**
 ```
 # kubectl delete pods -l myname!=arghya
 ```
-set based- 
+#### set based- 
 
-it gives those pods which contains any of this labels-
+**it gives those pods which contains any of this labels-**
 ```
 # kubectl get pods -l 'key in(value1, value2)'
 ```
-it gives those pods which do not contains any of this labels-
+**it gives those pods which do not contains any of this labels-**
 ```
 # kubectl get pods -l 'key notin(value1, value2)'
 ```
-it deletes those pods which contains any of this labels-
+**it deletes those pods which contains any of this labels-**
 ```
 # kubectl delete pods -l 'key in(value1, value2)'
 ```
-it deletes those pods which do not contains any of this labels-
+**it deletes those pods which do not contains any of this labels-**
 ```
 # kubectl delete pods -l 'key notin(value1, value2)'
 ```
@@ -345,7 +349,8 @@ it deletes those pods which do not contains any of this labels-
 
 
 ***************************************************************************
-NODE SELECTOR - suppose we have one master and 4 nodes. when we apply a pod then master can apply that pod in any of the node.
+### NODE SELECTOR - 
+                suppose we have one master and 4 nodes. when we apply a pod then master can apply that pod in any of the node.
                 but if we want to secify a particular node where our is going to apply then we should use node selector.
 				before that we have to attach a label on that particular node and then give that label under nodeSelector in 
 				manifest file.

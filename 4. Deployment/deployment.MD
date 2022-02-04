@@ -1,5 +1,6 @@
 **deployment-**
-           deployment is just like version control system. suppose now we are using ubuntu image in a pod an runiing do echo technical guftgu command in it.
+           ```
+	   deployment is just like version control system. suppose now we are using ubuntu image in a pod an runiing do echo technical guftgu command in it.
 after that if we change the command from technical guftgu to arghya roy, then it make a new version.
                                   - 1. we can recover the previous version where technical guftgu running.
 		                  - 2. while we using new version then old version of replica set is stopped but not deleted, but pod under replica set will be deleted.
@@ -14,12 +15,13 @@ after that if we change the command from technical guftgu to arghya roy, then it
 				      rollout- 
 					        we are in v2 and we want to go to v3 then it is called roll out or update.
 				  - 9. suppose we are running v2 in node1. now if we want to roll back to v1 then pod of v1 can be created in nod1 or any other node.
-				  - 10. when we do rollout or rollback then deployment object orders to replicaset to create pod for that versions as per decleared replic number.
+				  - 10. when we do rollout or rollback then deployment object orders to replicaset to create pod for that versions as per decleared replic 
+				       number.
                                   - 11. we can pause deployment.
 				  - 12. we can delete versions.
 				   
-				   
-    rollback to a specific previous version-
+```				   
+    **rollback to a specific previous version-**
 	                                kubectl rollout undo deploy/name --to-revision=2   # 2 or any specific version
 	to go just previous version - 
 									kubectl rollout undo deploy/name

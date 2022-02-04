@@ -32,7 +32,7 @@ spec:
 ```	
 
 **communication between two different pod in same node (each pod with one container) -**
-                                                                                  - pod to pod communication in same node can be done with pod ip. but by
+                                                                                  pod to pod communication in same node can be done with pod ip. but by
 default we cant communicate with pod from outside of node.( if we want to access it from cluster or another pod then we have to use cluster ip service)
 																				   
 ```

@@ -8,42 +8,51 @@
 ##### when we use kind: pod then if this pod is deleted then it can never by created automatically. to create it automatically we will leran it later.
 
 to apply pod
+```
 # kubectl apply f pod_name.yml
-
+```
 to see all pods
+```
 # kubectl get pods
-
+```
 to see that which pod is running on which nodes. it also shows pvt ip of pods.
+```
 # kubectl get pods -0 wide
-
+```
 to see details of a single pod
+```
 # kubectl describe pod pod_name
        or
 # kubectl describe pod/pod_name
-
+```
 to see that what is happening in container. if pod has multiple container then we have to specify container name.
+```
 # kubectl logs -f pod_name
+```
 if have multiple container
+```
 # kubectl logs -f pod_name -c container_name
-
+```
 
 to delete pod
+```
 # kubectl delete pod pod_name
 # kubectl delete -f name.yml	   
-
-------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+```
+---
                                                                                 pod
-------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+---
 { kind of a pod is always "pod". apiVersion of a pod is always v1. under metadata the name is name of the pod.
 incase of pod1 we create one container. name of that container is c00 and image is ubuntu. after creation of that container
 it will run /bin/bash command in container. -C means container. while true; do echo hello-bhupinder means if container creation succesfull
 the run hello-bhupinder for infinite time }
 
--------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+---
 
-
+```
 #vi pod1.yml
-
+```
+```
 kind: Pod                              
 apiVersion: v1                     
 metadata:                           
@@ -54,22 +63,36 @@ spec:
       image: ubuntu              
       command: ["/bin/bash", "-c", "while true; do echo Hello-Bhupinder; sleep 5 ; done"]
   restartPolicy: Never         # Defaults to Always
-  
+```
+```
 #kubectl apply -f pod1.yml
+```
+```
 #kubectl get pods
+```
 in output it shows testpod has 1/1 that means we have only one container in pod.
+```
 # kubectl get pods -o wide (it also shows pvt ip of pods)
+```
+```
 # kubectl describe pod testpod
+```
+```
 # kubectl logs -f testpod   ( it shows hello-bhupinder )
+```
+```
 # kubectl delete pod testpod
+```
+```
 # kubectl delete -f pod1.yml
+```
 
------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
+---
 if pod have multiple container
-
+```
 vi pod2.yml
-
+```
+```
 kind: Pod
 apiVersion: v1
 metadata:
@@ -83,29 +106,42 @@ spec:
       image: ubuntu
       command: ["/bin/bash", "-c", "while true; do echo Hello-Bhupinder; sleep 5 ; done"]
 	  
-	 
+```
+```
 #kubectl apply -f pod2.yml
+```
+```
 #kubectl get pods
+```
 in output it shows testpod3 has 2/2 that means we have only one container in pod.
+```
 # kubectl get pods -o wide (it also shows pvt ip of pods)
 # kubectl describe pod testpod2   
 # kubectl logs -f testpod2 ( it gives a error but shows all container_name of pod )  
 # kubectl logs -f testpod2 -c c00   ( it shows hello-bhupinder )
 # kubectl logs -f testpod2 -c c01   ( it shows hello-bhupinder )
+```
+to go inside container
+```
 # kubectl exec testpod3 -it -c c01 -- /bin/bash
           inside container
 		  # ps 
 		  # ps -ef
+```
+```
 # kubectl delete pod testpod2
+```
+```
 # kubectl delete -f pod2.yml
+```
 
------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
+---
 annotation - under it we write that why we create this pod. when we use kubectl describe pod pod_name then we can see annotation.
 we write annotation in metadata section.
-
+```
 #vi pod3.yml
-
+```
+```
 kind: Pod                              
 apiVersion: v1                     
 metadata:                           
@@ -118,7 +154,8 @@ spec:
       image: ubuntu              
       command: ["/bin/bash", "-c", "while true; do echo Hello-Bhupinder; sleep 5 ; done"]
   restartPolicy: Never         # Defaults to Always
-  
+  ```
+  ```
 #kubectl apply -f pod3.yml
 #kubectl get pods
 in output it shows testpod3 has 1/1 that means we have only one container in pod.
@@ -127,13 +164,14 @@ in output it shows testpod3 has 1/1 that means we have only one container in pod
 # kubectl logs -f testpod3   ( it shows hello-bhupinder )
 # kubectl delete pod testpod3
 # kubectl delete -f pod3.yml
-
---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+```
+---
 Enviroment variable - it is a key value pair. we need to define this in manifest file. after applying this file if we go inside the pod and run echo $key then it
 returns value.
-
+```
 # vi pod4.yml
-
+```
+```
 kind: Pod
 apiVersion: v1
 metadata:
@@ -146,7 +184,8 @@ spec:
       env:                        # List of environment variables to be used inside the pod
       - name: MYNAME
         value: BHUPINDER
-		
+```
+```
 #kubectl apply -f pod4.yml
 #kubectl get pods
 in output it shows testpod4 has 1/1 that means we have only one container in pod.
@@ -160,18 +199,20 @@ in output it shows testpod4 has 1/1 that means we have only one container in pod
           inside container
 		  # env ( to go inside env)
 		  # echo $MYNAME
-		  
+```
+```
 # kubectl delete pod testpod4
 # kubectl delete -f pod4.yml	
 
+```
 
-
----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+---
 
 POD WITH PORTS- to expose port in pod
-
+```
 #vi pod5
-
+```
+```
 kind: Pod
 apiVersion: v1
 metadata:
@@ -182,7 +223,8 @@ spec:
       image: httpd
       ports:
        - containerPort: 80  
-	   
+```
+```
 #kubectl apply -f pod5.yml
 #kubectl get pods
 in output it shows testpod5 has 1/1 that means we have only one container in pod.
@@ -191,8 +233,8 @@ in output it shows testpod5 has 1/1 that means we have only one container in pod
   <it works>
 # kubectl delete pod testpod5
 # kubectl delete -f pod5.yml
-
--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------	
+```
+---	
 
 LABELS - used to identify pod
          supposed a application named arghya is running in 3 pod. just to identify that 3 pod we can use labels.
@@ -217,9 +259,10 @@ The api currently supports two types of selector -
 						   c) exist
 							  
 		 
-
+```
 #vi pod6.yml
-
+```
+```
 kind: Pod
 apiVersion: v1
 metadata:
@@ -233,7 +276,8 @@ spec:
          image: ubuntu
          command: ["/bin/bash", "-c", "while true; do echo Hello-Bhupinder; sleep 5 ; done"]
 		 
-		 
+```
+```
 #kubectl apply -f pod6.yml
 #kubectl get pods
 in output it shows delhipod has 1/1 that means we have only one container in pod.
@@ -250,40 +294,50 @@ to check labels on all pod
 if you want to add label on existing pod
 # kubectl label pods pod_name myname=arghya	
 # kubectl get pods --show-labels
+```
 
 selector-
 
 equity based- 
 
 we can get list of pods which match a label-
+```
 # kubectl get pods -l env=development
-
+```
 we can get list of pods which does not match a label-
+```
 # kubectl get pods -l myname!=arghya
-
+```
 it gives those pods which contains all of these label -
+```
 # kubectl get pods -l env=development,myname=arghya
-
+```
 we can delete list of pods which match a label-
+```
 # kubectl delete pods -l env=development
-
+```
 we can delete list of pods which does not match a label-
+```
 # kubectl delete pods -l myname!=arghya
-
+```
 set based- 
 
 it gives those pods which contains any of this labels-
+```
 # kubectl get pods -l 'key in(value1, value2)'
-
+```
 it gives those pods which do not contains any of this labels-
+```
 # kubectl get pods -l 'key notin(value1, value2)'
-
+```
 it deletes those pods which contains any of this labels-
+```
 # kubectl delete pods -l 'key in(value1, value2)'
-
+```
 it deletes those pods which do not contains any of this labels-
+```
 # kubectl delete pods -l 'key notin(value1, value2)'
-
+```
 
 	 
 
@@ -303,11 +357,13 @@ NODE SELECTOR - suppose we have one master and 4 nodes. when we apply a pod then
 				
 				     here a question can arises that what happen if both we have multiple node hardware=t2-medium label?
 				     in that case in which node master get free space at first, there this pod will be applied.
-					 
+```					 
 # kubectl label nodes ip... hardware=t2-medium					 
-					 
+```
+```
 # vi pod7				 
-
+```
+```
 kind: Pod
 apiVersion: v1
 metadata:
@@ -321,10 +377,10 @@ spec:
          command: ["/bin/bash", "-c", "while true; do echo Hello-Bhupinder; sleep 5 ; done"]
     nodeSelector:                                         
        hardware: t2-medium
+```	   
 	   
-	   
-	   
+```	   
 #kubectl apply -f pod6.yml
 #kubectl get pods
-
+```
 *****************************************************************************************************

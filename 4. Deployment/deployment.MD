@@ -20,25 +20,40 @@ after that if we change the command from technical guftgu to arghya roy, then it
                                   - 11. we can pause deployment.
 				  - 12. we can delete versions.
 				   
-```				   
-    **rollback to a specific previous version-**
-	                                kubectl rollout undo deploy/name --to-revision=2   # 2 or any specific version
-	to go just previous version - 
-									kubectl rollout undo deploy/name
-	name of replica set-
-	                 [deployment_name][random string]
-	to check how deployment created rs and pods-
-	                 kubectl describe deploy mydeployments
-	to check what is running inside containers-
-	                 kubectl log -f podname
-	to scale up or scale down -
-	                 kubectl scale --replicas=1 deploy name
-	to check status of roll back -
-	                 kubectl rollout status deployment name
-	to check history or how many version you have of rollback -
-	                 kubectl rollout history deployment name
-					 
-					 
+```
+**rollback to a specific previous version-**
+```
+	     kubectl rollout undo deploy/name --to-revision=2   # 2 or any specific version
+```
+**to go just previous version -**
+```
+	     kubectl rollout undo deploy/name
+```	     
+name of replica set-
+```
+	     [deployment_name][random string]
+```
+to check how deployment created rs and pods-
+```
+	     kubectl describe deploy mydeployments
+```	     
+to check what is running inside containers-
+```
+	      kubectl log -f podname
+```
+to scale up or scale down -
+```
+	      kubectl scale --replicas=1 deploy name
+```
+to check status of roll back -
+```
+	      kubectl rollout status deployment name
+```
+to check history or how many version you have of rollback -
+```
+	      kubectl rollout history deployment name
+```					 
+```					 
 reasons for deployment failed -
 1) insufficient quota -
          dont have required resourses in node.
@@ -47,10 +62,11 @@ reasons for deployment failed -
 4) insufficient permission
 5) limit ranges
 6) application rumtime misconfiguration
-	
-
+```	
+```
 vi deploy1.yml
-
+```
+```
 kind: Deployment
 apiVersion: apps/v1
 metadata:
@@ -70,16 +86,17 @@ spec:
         - name: c00
           image: ubuntu
           command: ["/bin/bash", "-c", "while true; do echo Technical-Guftgu; sleep 5; done"]
-		  
-		  
+```		  
+```		  
 # kubectl apply -f deploy1.yml
 # kubectl get deploy
 # kubectl log -f podname
-
-now we are changing the command 
-
+```
+### now we are changing the command 
+```
 vi deploy1.yml
-
+```
+```
 kind: Deployment
 apiVersion: apps/v1
 metadata:
@@ -99,8 +116,8 @@ spec:
         - name: c00
           image: ubuntu
           command: ["/bin/bash", "-c", "while true; do echo love-you; sleep 5; done"]
-		  
-		  
+```		  
+```		  
 # kubectl apply -f deploy1.yml
 # kubectl get rs
       o/p- it will show that we have two replicaset under this development. but status of previous one is zero, that means the previous one is stopped.
@@ -108,7 +125,7 @@ spec:
 
 # kubectl rollout undo deploy/name
 # kubectl log -f podname
-
+```
 
 
 

@@ -237,6 +237,7 @@ spec:
       ports:
        - containerPort: 80  
 ```
+now we can access that httpd by podip:80 from that node only, to access that from cluster we need to use cluster ip.
 ```
 #kubectl apply -f pod5.yml
 #kubectl get pods

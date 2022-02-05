@@ -72,11 +72,11 @@ apiVersion: apps/v1
 metadata:
    name: mydeployments
 spec:
-   replicas: 2
+   replicas: 2       # by using this deployment controlls replica set
    selector:     
     matchLabels:
      name: deployment
-   template:
+   template:            # this template = kind: Pod and apiVersion: v1
      metadata:
        name: testpod
        labels:
@@ -102,11 +102,11 @@ apiVersion: apps/v1
 metadata:
    name: mydeployments
 spec:
-   replicas: 2
+   replicas: 2          # by using this deployment controlls replica set
    selector:     
     matchLabels:
      name: deployment
-   template:
+   template:            # this template = kind: Pod and apiVersion: v1
      metadata:
        name: testpod
        labels:

@@ -9,7 +9,7 @@
 
 **to apply pod**
 ```
-# kubectl apply f pod_name.yml
+# kubectl apply -f pod_name.yml
 ```
 **to see all pods**
 ```

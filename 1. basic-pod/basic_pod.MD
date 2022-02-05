@@ -383,7 +383,12 @@ in output it shows delhipod has 1/1 that means we have only one container in pod
 				     here a question can arises that what happen if both we have multiple node hardware=t2-medium label?
 				     in that case in which node master get free space at first, there this pod will be applied.
 ```					 
-# kubectl label nodes ip... hardware=t2-medium					 
+# kubectl label nodes <ip...> hardware=t2-medium					 
+```
+
+**to find ip of node**
+```
+kubectl get nodes -o wide
 ```
 ```
 # vi pod7				 

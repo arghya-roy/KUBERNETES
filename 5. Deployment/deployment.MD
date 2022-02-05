@@ -41,7 +41,7 @@ to check what is running inside containers-
 ```
 	      kubectl log -f podname
 ```
-to scale up or scale down -
+**to scale up or scale down -**
 ```
 	      kubectl scale --replicas=1 deploy name
 ```

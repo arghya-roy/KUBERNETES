@@ -36,7 +36,7 @@ spec:
   replicas: 2                #number of pods to replicate.
   selector:        
     myname: Bhupinder        # this selector should be same as labels of pod, selector of RC matches the labels of pods to replicate or control this.
-  template:                
+  template:                  # this template = kind: Pod and apiVersion: v1
     metadata:
       name: testpod6         # name of pod
       labels:            

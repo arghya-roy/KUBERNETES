@@ -48,7 +48,7 @@ kubectl apply -f pod.yml -n dev
 $ kubectl config set-context $(kubectl config current-context) --namespace=dev
 ```
 after running the above command all objects are going to deploy in dev namespaces without adding -n dev.
-**to check that which namespace is set as default -**
+##### **to check that which namespace is set as default -**
 ```
 $ kubectl config view | grep namespace:
 ```

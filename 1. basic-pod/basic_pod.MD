@@ -1,8 +1,8 @@
 ##### pod manages container.
 ##### replica set manages pod.
 ##### pod have a different private IP. container dont have any ip.
-##### suppose we a have a master and 3 nodes. when we create a pod in master then by default master can creates this pod any any of the nodes. If 
-##### the pod fails then we cant recover the same pod but we can configure to get a exact same pod with different unique id.
+##### suppose we a have a master and 3 nodes. when we create a pod in master then by default master can creates this pod any any of the nodes.  
+##### If the pod fails then we cant recover the same pod but we can configure to get a exact same pod with different unique id.
 
 
 ##### when we use kind: pod then if this pod is deleted then it can never by created automatically. to create it automatically we will leran it later.
@@ -48,6 +48,19 @@ it will run /bin/bash command in container. -C means container. while true; do e
 the run hello-bhupinder for infinite time**
 
 ---
+**restart policy of container**-
+```
+Always -
+    means that the container will be restarted even if it exited with a zero exit code (i.e. successfully). This is useful when you don't care why the container exited, you just want to make sure that it is always running (e.g. a web server). This is the default.
+
+OnFailure - 
+      means that the container will only be restarted if it exited with a non-zero exit code (i.e. something went wrong). This is useful when you want accomplish a certain task with the pod, and ensure that it completes successfully - if it doesn't it will be restarted until it does.
+
+Never -
+  means that the container will not be restarted regardless of why it exited.
+
+These different restart policies basically map to the different controller types as you can see from kubectl run --help:
+```
 
 ```
 #vi pod1.yml
@@ -62,7 +75,7 @@ spec:
     - name: c00                     
       image: ubuntu              
       command: ["/bin/bash", "-c", "while true; do echo Hello-Bhupinder; sleep 5 ; done"]
-  restartPolicy: Never         # Defaults to Always
+  restartPolicy: Never         # Defaults is Always
 ```
 ```
 #kubectl apply -f pod1.yml
@@ -137,7 +150,7 @@ to go inside container
 
 ---
 **annotation** - under it we write that why we create this pod. when we use kubectl describe pod pod_name then we can see annotation.
-we write annotation in metadata section.
+we write annotation in metadata section. this is a one type of description of pod.
 ```
 #vi pod3.yml
 ```

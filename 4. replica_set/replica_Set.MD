@@ -19,7 +19,7 @@ spec:
     matchExpressions: # any of these must match the labels, if any of these are mathing with label of pod then it controls the pods.
       - {key: myname, operator: In, values: [Bhupinder, Bupinder, Bhopendra]} 
       - {key: env, operator: NotIn, values: [production]}
-  template:      
+  template:        # this template = kind: Pod and apiVersion: v1      
     metadata:
       name: testpod7
       labels:              

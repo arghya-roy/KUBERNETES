@@ -3,7 +3,7 @@
 by using kind: job, it also creates pod. but this pod runs only one time.after completeing the work it
 termenetes automatically. In the below example it runs echo Technical-Guftgu for 5 secs, after that
 pod will be terminated.
-``
+```
 vi job1.yml
 ```
 ```
@@ -22,7 +22,15 @@ spec:
         command: ["bin/bash", "-c", "echo Technical-Guftgu; sleep 5"]
       restartPolicy: Never
 ```
-**parallelism -**  
+**parallelism -** parallelism in job can be compared with replica set in pod.
+In this example it runs 5 pod together after completing the work, 5 pod will be terminated.
+**activeDeadlineSeconds**- after finishing the job, it waits sometime. afterthat the pod 
+will be terminated. In this example after completing the work pod will waits for 10 sec
+then it will be deleted.
+```
+vi job2.yml
+```
+```
 apiVersion: batch/v1
 kind: Job
 metadata:
@@ -39,7 +47,14 @@ spec:
         image: centos:7
         command: ["bin/bash", "-c", "echo Technical-Guftgu; sleep 20"]
       restartPolicy: Never
--------------
+```
+**CronJob-**
+           suppose we want to run a pod now and after doing the work it will be deleted, but if we 
+want to run the same pod in every miniute then we use cronejob.
+```
+vi cronjob1.yml
+```
+```
 apiVersion: batch/v1beta1
 kind: CronJob
 metadata:
@@ -55,6 +70,7 @@ spec:
            name: bhupi
            command: ["/bin/bash", "-c", "echo Technical-Guftgu; sleep 5"]
          restartPolicy: Never
+```
 =================Init Containers==
 apiVersion: v1
 kind: Pod

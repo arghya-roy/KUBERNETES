@@ -72,7 +72,14 @@ spec:
            command: ["/bin/bash", "-c", "echo Technical-Guftgu; sleep 5"]
          restartPolicy: Never
 ```
-=================Init Containers==
+**Init Containers -**
+suppose we need to run a container before the main container runs, then the first container is Init Containers.
+as a example init container clones code from github and we do volume mapping with those two container. then after 
+stoping the init container the main container runs and can access the code.
+```
+vi init.yml
+```
+```
 apiVersion: v1
 kind: Pod
 metadata:
@@ -95,4 +102,4 @@ spec:
   volumes:                            
   - name: xchange
     emptyDir: {}
-=================
+```

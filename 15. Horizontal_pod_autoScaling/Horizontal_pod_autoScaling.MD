@@ -23,7 +23,7 @@ spec:
  ```
  kubectl apply -f metricserver.yml
  ```
---------------
+```
 kind: Deployment
 apiVersion: apps/v1
 metadata:
@@ -49,5 +49,9 @@ spec:
               cpu: 500m
             requests:
               cpu: 200m
----------------------
-$ kubectl autoscale deployment mydeploy --cpu-percent=20 --min=1 --max=10
+```
+```
+$ kubectl autoscale deployment deploy_name --cpu-percent=20 --min=1 --max=10
+```
+This means when cpu utilisation crosses 20% then it automatically creates new pod. but after that when load decreases less than 20% 
+then it waits for 5 min, after that it deletes pod. in this case minimum pod is 1 and maximum pod is 10.

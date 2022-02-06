@@ -1,9 +1,9 @@
 **Configmap -**
-     configmap can be defined in two types. main difference between congigmap and secret is that anyone can read configmap content but only 
-     container can read secret files. as a example when we need to pass database url then we use configmap and when we pass password then we use secret.
-   ##### 1. by volume - 
-               at first we create a file with content and then we declere that file as configmap. then this file works as a virtual volume.
-   after that when any container has to access the content of the file, then we mounth the volume.
+configmap can be defined in two types. main difference between congigmap and secret is that anyone can read configmap content but only 
+container can read secret files. as a example when we need to pass database url then we use configmap and when we pass password then we use secret.
+##### 1. by volume - 
+at first we create a file with content and then we declere that file as configmap. then this file works as a virtual volume.
+after that when any container has to access the content of the file, then we mounth the volume.
    **to decleare file a configmap-**
    ```
    kubectl create configmap name1 --from-file=file_name.conf

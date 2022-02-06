@@ -4,6 +4,10 @@ container can read secret files. as a example when we need to pass database url 
 #### 1. by volume - 
 at first we create a file with content and then we declere that file as configmap. then this file works as a virtual volume.
 after that when any container has to access the content of the file, then we mounth the volume.
+ ```
+ vi file_name.conf
+ write content
+ ```
 ####   **to decleare file a configmap-**
    ```
    kubectl create configmap name1 --from-file=file_name.conf
@@ -44,10 +48,7 @@ spec:
 ```
    kubectl create configmap name2 --from-file=file_name.conf
 ```
- ```
- vi file_name.conf
- write content
- ```
+
 ```
 vi pod2.yml
 ```

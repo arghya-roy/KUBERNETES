@@ -24,7 +24,8 @@ spec:
 ```
 **parallelism -** parallelism in job can be compared with replica set in pod.
 In this example it runs 5 pod together after completing the work, 5 pod will be terminated.
-**activeDeadlineSeconds**- after finishing the job, it waits sometime. afterthat the pod 
+#### **activeDeadlineSeconds**-
+after finishing the job, it waits sometime. afterthat the pod 
 will be terminated. In this example after completing the work pod will waits for 10 sec
 then it will be deleted.
 ```

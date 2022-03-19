@@ -1,0 +1,18 @@
+kind: Pod
+apiVersion: v1
+metadata:
+  name: testpod
+  annotations: 
+     descriotion: this is test pod
+  labels:
+     environment: prod  
+     class: pods  
+spec:
+  containers:
+    - name: con1
+      image: nginx
+      command: ["/bin/bash", "-c", "while true; do echo Hello-Bhupinder; sleep 5 ; done"]
+      env:
+        - name: arghya
+      ports:
+        - containerPort: 80

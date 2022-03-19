@@ -16,3 +16,5 @@ spec:
         - name: arghya
       ports:
         - containerPort: 80
+  nodeSelector:
+    name: suvo

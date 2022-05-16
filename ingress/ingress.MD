@@ -109,3 +109,4 @@ paths:
 serviceName: watch-service
 servicePort: 80
 ```
+### Before everything have to create two services named watch-service and wear-service with cluster ip for deployment

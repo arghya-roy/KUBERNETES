@@ -107,4 +107,4 @@ spec:
               number: 80
   ```
 ### kubectl get ingress
-map two host with same ip
+map host with same ip

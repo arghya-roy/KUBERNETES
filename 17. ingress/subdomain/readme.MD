@@ -1,3 +1,17 @@
+### deploy ingress controller -
+```
+helm repo add nginx-stable https://helm.nginx.com/stable
+helm repo update
+helm install ingress-nginx nginx-stable/nginx-ingress
+helm install ingress-nginx nginx-stable/nginx-ingress --set rbac.create=true
+kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v1.0.0/deploy/static/provider/cloud/deploy.yaml
+```
+### to check -
+```
+kubectl get pods --all-namespaces -l app.kubernetes.io/name=ingress-nginx
+kubectl get services ingress-nginx-controller --namespace=ingress-nginx
+```
+
 ### Deployment-service 1 -
 ```
 kind: Deployment
@@ -95,3 +109,5 @@ spec:
             port:
               number: 80
   ```
+### kubectl get ingress
+map two host with same ip

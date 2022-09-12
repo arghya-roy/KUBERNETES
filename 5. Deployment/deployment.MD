@@ -1,5 +1,5 @@
 **deployment-**
-```
+
 	   deployment is just like version control system. suppose now we are using ubuntu image in a pod an runiing do echo technical guftgu command in it.
 after that if we change the command from technical guftgu to arghya roy, then it make a new version.
                                   - 1. we can recover the previous version where technical guftgu running.
@@ -20,7 +20,7 @@ after that if we change the command from technical guftgu to arghya roy, then it
                                   - 11. we can pause deployment.
 				  - 12. we can delete versions.
 				   
-```
+---
 **rollback to a specific previous version-**
 ```
 	     kubectl rollout undo deploy/name --to-revision=2   # 2 or any specific version

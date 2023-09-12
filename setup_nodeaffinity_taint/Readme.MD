@@ -6,6 +6,7 @@ kubectl taint nodes node01 application=example:NoSchedule
 kubectl taint nodes node02 application=example:NoSchedule  #optional
 
 ## create pod with node affinity and tolerance -
+```
 apiVersion: v1
 kind: Pod
 metadata:
@@ -29,3 +30,4 @@ spec:
             values:
             - blue
             - green # optional
+```
